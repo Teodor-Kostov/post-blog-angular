@@ -1,5 +1,7 @@
 header {
     background: #234465;
+    width: 100%;
+    overflow: hidden;
 }
 
 header ul {
@@ -42,6 +44,7 @@ header a {
     color: white;
     padding-bottom: 0;
     text-align: center;
+    margin: 0;
 }
 
 .logo-wrap {
@@ -53,8 +56,7 @@ header a {
 
 .logo-wrap > img {
     height: 15vh;
-    margin-right: 3vw;
-    margin-left: -4vw;
+    margin-right: 1vw;
 }
 
 .mini-navbar-wrap {
@@ -62,13 +64,14 @@ header a {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 90%;
-    margin: auto;
+    width: 100%;
+    padding: 0 1em;
+    box-sizing: border-box;
 }
 
 .mini-navbar ul {
-    margin-bottom: 60px;
-    margin-right: -50px;
+    margin: 0;
+    padding-right: 1em;
 }
 
 .mini-navbar ul li {
