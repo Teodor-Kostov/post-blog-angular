@@ -1,10 +1,10 @@
 .site {
-    max-width: 50em;
-    margin: 0 auto;
+    width: 100%;
+    margin: 0;
 }
 
 .container {
-    width: 90%;
+    width: 100%;
     margin: auto;
     padding-bottom: 4.5em;
     display: flex;

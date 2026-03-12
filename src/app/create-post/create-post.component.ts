@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'app-create-post',
   imports: [],
   templateUrl: './create-post.component.html',
-  styleUrl: './create-post.component.css'
+  styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent {
 

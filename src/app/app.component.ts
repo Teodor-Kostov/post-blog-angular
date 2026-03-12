@@ -10,7 +10,7 @@ import { MainComponent } from './main/main.component';
   selector: 'app-root',
   imports: [RouterOutlet, CreatePostComponent,MainComponent, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'post-blog';
