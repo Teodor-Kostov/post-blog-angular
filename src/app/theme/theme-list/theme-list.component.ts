@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../api.service';
-import { Theme } from '../types';
-import { LoaderComponent } from '../shared/loader/loader.component';
+import { ApiService } from '../../api.service';
+import { Theme } from '../../types';
+import { LoaderComponent } from '../../shared/loader/loader.component';
 
 @Component({
   selector: 'app-theme-list',
