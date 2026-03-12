@@ -3,15 +3,17 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types';
 import { LoaderComponent } from '../../shared/loader/loader.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-theme-list',
   standalone: true,
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderComponent,RouterLink],
   templateUrl: './theme-list.component.html',
   styleUrls: ['./theme-list.component.css']
 })
 export class ThemeListComponent implements OnInit {
+
   themes: Theme[] = [];
   isLoading = true;
 
