@@ -7,6 +7,7 @@ import { ThemeListComponent } from './theme/theme-list/theme-list.component';
 import { NewThemeComponent } from './theme/new-theme/new-theme.component';
 import { MainComponent } from './main/main.component';
 import { CurentThemeComponent } from './theme/curent-theme/curent-theme.component';
+import { ProfileComponent } from './user/profile/profile.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const routes: Routes = [
             {path: '', component: MainComponent},
             {path: ':themeId', component: CurentThemeComponent}
          ] },
+    {path: 'user-profile', component: ProfileComponent},
     { path: 'new-theme', component: NewThemeComponent },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }

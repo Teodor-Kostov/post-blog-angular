@@ -3,18 +3,27 @@ export type User = {
   username: string;
   email: string;
   password?: string;
-  themes?: string[];
-  posts?: string[];
+  themes?: Theme[];
+  posts?: Post[];
   created_at?: string;
   updatedAt?: string;
 };
+
+export type UserForAuth = {
+  id: string,
+  firstName: string,
+  secondName: string,
+  phone: string,
+  email: string,
+  password: string
+}
 
 export type Theme = {
   _id: string;
   themeName: string;
   userId: User;
   subscribers: string[];
-  posts?: string[];
+  posts: Post[];
   created_at: string;
   updatedAt?: string;
 };
@@ -31,6 +40,7 @@ export type Post = {
 
 export type CreateThemeDto = {
   themeName: string;
+  postText: string;
 };
 
 export type UpdateThemeDto = {
