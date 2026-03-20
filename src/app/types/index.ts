@@ -55,3 +55,5 @@ export type CreatePostDto = {
 export type UpdatePostDto = {
   text?: string;
 };
+// a value that can be also null or undefined
+export type Maybe<T> = T | null | undefined;

@@ -1,23 +1,49 @@
 <div class="container">
-        <form class="login" action="" method="post">
+        <form class="login" #form="ngForm" (ngSubmit)="login(form)">
 
             <fieldset>
                 <h2>Login Form</h2>
 
                 <p class="field field-icon">
                     <label for="email"><span><i class="fas fa-envelope"></i></span></label>
-                    <input class="input-error" type="email" name="email" id="email" placeholder="john.doe@gmail.com" #emailInput>
+                    <input 
+                    class="input-error" 
+                    type="email" 
+                    name="email"
+                    ngModel
+                    id="email" 
+                    placeholder="john.doe@gmail.com" 
+                    #emailInput = "ngModel"
+                    required
+                    appEmail
+                    >
                 </p>
-                <p class="error">
+                @if (emailInput.invalid && emailInput.touched) {
+                    @if (emailInput.errors?.['required']) {
+                        <p class="error"> 
                     Email is required!
                 </p>
-                <!-- <p class="error">
+                    }@if (emailInput.errors?.['Email']) {
+                        <p class="error">
                     Email is not valid!
-                </p> -->
+                </p>
+                    }
+                    
+                }
+    
+            
 
                 <p class="field field-icon">
                     <label for="password"><span><i class="fas fa-lock"></i></span></label>
-                    <input type="password" name="password" id="password" placeholder="******" #passwortImput>
+                    <input 
+                    type="password" 
+                    name="password" 
+                    ngModel
+                    id="password" 
+                    placeholder="******" 
+                    #passwortImput = "ngModel"
+                    required
+                    >
                 </p>
                 <!-- <p class="error">
                     Password is required!
@@ -26,7 +52,7 @@
                     Password must be at least 4 characters!
                 </p> -->
 
-                <button (click)="login($event, passwortImput.value, emailInput.value)">Login</button>
+                <button>Login</button>
 
                 <p class="text-center">
                     Have an account?
