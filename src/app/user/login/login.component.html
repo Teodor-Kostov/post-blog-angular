@@ -7,7 +7,7 @@
                 <p class="field field-icon">
                     <label for="email"><span><i class="fas fa-envelope"></i></span></label>
                     <input 
-                    class="input-error" 
+                    [class]="(emailInput.errors?.['required'] || emailInput.errors?.['Email'] ) ? 'input-error': '' " 
                     type="email" 
                     name="email"
                     ngModel
@@ -19,6 +19,7 @@
                     >
                 </p>
                 @if (emailInput.invalid && emailInput.touched) {
+                    <div>
                     @if (emailInput.errors?.['required']) {
                         <p class="error"> 
                     Email is required!
@@ -28,7 +29,7 @@
                     Email is not valid!
                 </p>
                     }
-                    
+                    </div>
                 }
     
             
@@ -37,20 +38,33 @@
                     <label for="password"><span><i class="fas fa-lock"></i></span></label>
                     <input 
                     type="password" 
+                    [class]="(passwortInput.errors?.['required'] || passwortInput.errors?.['minlength'] ) ? 'input-error': '' "
                     name="password" 
                     ngModel
                     id="password" 
                     placeholder="******" 
-                    #passwortImput = "ngModel"
+                    #passwortInput = "ngModel"
                     required
+                    minlength="4"
                     >
                 </p>
-                <!-- <p class="error">
-                    Password is required!
-                </p>
-                <p class="error">
-                    Password must be at least 4 characters!
-                </p> -->
+                <div>
+                    @if (passwortInput.invalid && passwortInput.touched) {
+                        @if (passwortInput.errors?.['required']) {
+                            <p class="error">
+                            Password is required!
+                            </p>
+                        }
+                        @if (passwortInput.errors?.['minlength'] ) {
+                            <p class="error">
+                            Password must be at least 4 characters!
+                        </p>
+                        }
+                    }
+                    
+                
+                </div>
+                
 
                 <button>Login</button>
 

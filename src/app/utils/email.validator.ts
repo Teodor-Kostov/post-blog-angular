@@ -5,10 +5,6 @@ const EMAIL_REGEX = /^[A-Za-z0-9._%+-]{3,}@[A-Za-z0-9-]{3,}\.[A-Za-z]{2,}$/;
 
 export function emailvalidator(control: AbstractControl): ValidationErrors | null{
     const value = control.value as Maybe<string>
-
-    console.log(control);
-    
-
     if (!value) {
     return null;
   }
