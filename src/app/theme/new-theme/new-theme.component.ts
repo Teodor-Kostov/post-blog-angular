@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../../api.service';
 
 @Component({
   selector: 'app-new-theme',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, FormsModule],
   templateUrl: './new-theme.component.html',
   styleUrls: ['./new-theme.component.css']
 })
@@ -15,14 +15,13 @@ export class NewThemeComponent {
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  addTheme(themeName: string, postText:string, event: Event) {
-    console.log({themeName, postText});
+
+  addTheme(form: NgForm) {
+        
+    const themeName: string = form.controls['themeName']?.value;
+    const postText: string = form.controls['postText']?.value;
     
-    /* if (themeName || themeName.length < 5 || postText || postText.length < 10) {
-      return;
-    }
- */
-    this.apiService.themeApi.createTheme({
+     this.apiService.themeApi.createTheme({
       themeName,
       postText
     }).subscribe({

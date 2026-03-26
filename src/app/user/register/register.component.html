@@ -9,9 +9,9 @@
           ><span><i class="fas fa-user"></i></span
         ></label>
         <input
-          [class]="
+          [class]="usernameInput.touched && (
             usernameInput.errors?.['required'] ||
-            usernameInput.errors?.['minlength']
+            usernameInput.errors?.['minlength'])
               ? 'input-error'
               : ''
           "
@@ -41,8 +41,8 @@
         ></label>
         <input
           type="email"
-          [class]="
-            emailInput.errors?.['required'] || emailInput.errors?.['Email']
+          [class]="emailInput.touched && (
+            emailInput.errors?.['required'] || emailInput.errors?.['Email'])
               ? 'input-error'
               : ''
           "
@@ -134,7 +134,10 @@
         }
       </div>
 
-      <button [disabled]="form.invalid">Create Account</button>
+      <button 
+      [disabled]="form.invalid"
+      [style]="{backgroundColor: form.invalid ? 'grey' : '#234465'}"
+      >Create Account</button>
 
       <p class="text-center">
         Have an account?

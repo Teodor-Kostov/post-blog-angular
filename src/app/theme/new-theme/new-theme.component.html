@@ -3,13 +3,32 @@
         <div class="header-background">
             <span>New Theme</span>
         </div>
-        <form>
+        <form #form="ngForm" (ngSubmit)="addTheme(form)">
             <div class="new-theme-title">
                 <label for="themeName">Title <span class="red">*</span></label>
-                <input type="text" name="themeName" id="themeName" #themeName>
-                @if (themeName.value && themeName.value.length < 5) {
-                    <p class="error">Theme name must be at least 5 characters long.</p>
+                <input 
+                type="text" 
+                name="themeName" 
+                id="themeName" 
+                ngModel
+                #themeName="ngModel"
+                required
+                minlength="5"
+                >
+                @if (themeName.invalid && themeName.touched) {
+                    <div>
+                    @if (themeName.errors?.['required']) {
+                        <p class="error"> 
+                    Theme name is required!
+                </p>
+                    }@if (themeName.errors?.['minlength']) {
+                        <p class="error">
+                    Theme name must be at least 5 characters long.
+                </p>
+                    }
+                    </div>
                 }
+
             </div>
             <div class="new-theme-content">
                 <label for="postText">Post <span class="red">*</span></label>
@@ -18,18 +37,31 @@
                     id="postText"
                     rows="8"
                     class="height"
-                    #postText
+                    ngModel
+                    #postText="ngModel"
+                    minlength="10"
+                    required
                 ></textarea>
-                @if (postText.value && postText.value.length < 10) {
-                    <p class="error">Post must be at least 10 characters long.</p>
+                 @if (postText.invalid && postText.touched) {
+                    <div>
+                    @if (postText.errors?.['required']) {
+                        <p class="error"> 
+                    Post is required!
+                </p>
+                    }@if (postText.errors?.['minlength']) {
+                        <p class="error">
+                    Post must be at least 10 characters long.
+                </p>
+                    }
+                    </div>
                 }
+                
             </div>
             <div class="new-theme-buttons">
                 <button type="button" class="cancel" (click)="onCancel()">Cancel</button>
-                <button
-                    type="submit"
-                    class="public"
-                    (click)="addTheme( themeName.value, postText.value, $event)"
+                <button 
+                [disabled]="form.invalid"
+                [style]="{backgroundColor: form.invalid ? 'grey' : '#ff9f00'}"
                 >Post</button>
             </div>
         </form>
