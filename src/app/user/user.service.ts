@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserForAuth } from '../types';
+import { type User, LoginRequest, RegisterRequest, EditProfileRequest } from '../types';
+import { Observable, tap } from 'rxjs';
+import { ApiService } from '../api.service';
+
 
 @Injectable({
   providedIn: 'root'
@@ -7,41 +10,43 @@ import { UserForAuth } from '../types';
 export class UserService {
 
   USER_KEY = '[user]';
-  user: UserForAuth | null = null;
-  
+  user: User | null = null;
+
   get isLogged(): boolean {
     return !!this.user
   }
 
-  
-  constructor() { 
-    try {
-      const lsUser = localStorage.getItem(this.USER_KEY) || '';
-      this.user = JSON.parse(lsUser)
-      
-    } catch (error) {
-      this.user = null;
-      
-    }
+  constructor(private apiService: ApiService) {}
+
+
+  register(data: RegisterRequest): Observable<User>{
+    return this.apiService.userApi.register(data).pipe(
+      tap((user)=>{
+        this.user = user;
+         localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+      })
+    )
   }
 
-    login(){
-      this.user = {
-        id: '123456781234567',
-        firstName: 'Max',
-        secondName: 'Mustermann',
-        phone: '099998888777666',
-        email: 'max.mustermann@internet.com',
-        password: '123456'
-      }
-      localStorage.setItem(this.USER_KEY, JSON.stringify(this.user))
+  login(data: LoginRequest): Observable<User> {
+    return this.apiService.userApi.login(data).pipe(
+      tap((user) => {
+        this.user = user;
+        localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+      })
+    );
+  }
 
-      }
-
-
-      logout(){
-        this.user = null;
-        localStorage.removeItem(this.USER_KEY)
-      }
+  logout(): void {
+    this.user = null;
+    localStorage.removeItem(this.USER_KEY);
+  }
+  updateProfile(data: EditProfileRequest): Observable<User> {
+    return this.apiService.userApi.updateProfile(data).pipe(
+      tap((user) => {
+        this.user = user;
+        localStorage.setItem(this.USER_KEY, JSON.stringify(user));
+      })
+    );
+  }
 }
-      

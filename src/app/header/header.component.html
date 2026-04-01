@@ -9,7 +9,7 @@
       <ul>
         @if (isLoggedIn) {
             <li>
-          <a routerLink="/user-profile">{{firstName}} profile</a>
+          <a routerLink="/user-profile">{{username}}'s profile</a>
         </li>
         <li>
           <a (click)="logOut()">Logout</a>
@@ -22,8 +22,8 @@
             <a routerLink="/register">Register</a>
           </li>
         }
-         
-        
+
+
       </ul>
     </div>
   </div>
@@ -42,5 +42,5 @@
     </ul>
   </nav>
   }
-  
+
 </header>

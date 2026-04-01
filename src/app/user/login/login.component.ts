@@ -3,7 +3,6 @@ import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../user.service';
 import { FormsModule, NgForm } from '@angular/forms';
 import { EmailDirective } from "../../../directives/email.directive";
-
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -13,22 +12,27 @@ import { EmailDirective } from "../../../directives/email.directive";
 })
 export class LoginComponent {
 
-  
-
-  constructor(private userService: UserService, private router: Router){
-
-  }
+  constructor(private userService: UserService, private router: Router) {}
 
   login(form: NgForm){
     if(form.invalid){
       return;
     }
-    
-    this.userService.login();
-    this.router.navigate(['/home'])
 
-    
+    const data = {
+      email: form.value.email,
+      password: form.value.password
+    };
 
+    this.userService.login(data).subscribe({
+      next: (user) => {
+        
+        this.router.navigate(['/home']);
+      },
+      error: (err) => {
+        console.error('Login failed:', err);
+      }
+    });
   }
 
 }

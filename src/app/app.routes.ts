@@ -20,7 +20,7 @@ export const routes: Routes = [
             {path: '', component: MainComponent},
             {path: ':themeId', component: CurentThemeComponent}
          ] },
-    {path: 'user-profile', component: ProfileComponent},
+    {path: 'user-profile', component: ProfileComponent, canActivate: [AuthGuard]},
     { path: 'new-theme', component: NewThemeComponent, canActivate: [AuthGuard] },
     { path: '404', component: NotFoundComponent },
     { path: '**', redirectTo: '/404' }
